@@ -1,4 +1,4 @@
-// Update with your config settings.
+const connectionString = process.env.DATABASE_URL || "postgressql://postgres:pass@localhost/northwind";
 
 module.exports = {
 
@@ -22,4 +22,16 @@ module.exports = {
       },
     },
   }, 
+
+  production: {
+    client: "pg", // remember to npm i pg
+    connection: connectionString,
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      direction: "./data/migrations",
+    }
+  }
 };
